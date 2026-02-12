@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Blog</title>
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4;">
+
+<h1 style="color: #333; text-align: center;">My Blog</h1>
+
+<div style="max-width: 700px; margin: auto;">
+
+{% for post in posts %}
+
+    <div style="background: white; padding: 20px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ddd;">
+
+        <h2 style="margin: 0;">
+            <a href="{% url 'post_detail' post.pk %}" 
+               style="text-decoration: none; color: #007bff;">
+                {{ post.title }}
+            </a>
+        </h2>
+
+        <p style="color: #555; line-height: 1.6;">
+            {{ post.content|truncatewords:20 }}
+        </p>
+
+        <small style="color: gray;">
+            {{ post.created_at }}
+        </small>
+
+    </div>
+
+{% empty %}
+
+    <p style="text-align: center; color: red;">
+        No posts available.
+    </p>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>
